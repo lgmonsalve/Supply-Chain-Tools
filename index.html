@@ -5,31 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supply Chain Tools</title>
     <style>
-        /* General Reset and Body Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* Base Styles */
+        :root {
+            --primary-color: #1E2A38; /* Deep Navy */
+            --secondary-color: #00A8E8; /* Electric Blue */
+            --text-color-primary: #2E2E2E; /* Charcoal */
+            --text-color-secondary: #FFFFFF; /* White */
+            --background-light: #F4F4F4; /* Light Gray/Off-white */
+            --background-white: #FFFFFF; /* White */
+            --border-light: #E1E4EB; /* Light border */
+            --border-medium: #6C7A89; /* Slate Gray Border */
+            --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --font-primary: 'Roboto', sans-serif;
+            --font-secondary: 'Montserrat', sans-serif;
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #F4F4F4; /* Light Gray/Off-white */
-            color: #2E2E2E; /* Charcoal */
+            font-family: var(--font-primary);
+            background-color: var(--background-light);
+            color: var(--text-color-primary);
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            line-height: 1.6;
         }
 
-        /* Header Section */
+        /* Header */
         header {
-            background-color: #1E2A38; /* Deep Navy */
-            color: #FFFFFF; /* White */
+            background-color: var(--primary-color);
+            color: var(--text-color-secondary);
             text-align: center;
-            padding: 20px 0;
+            padding: 2rem 0;
         }
 
         header h1 {
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--font-secondary);
             font-size: 2.5rem;
-            margin-bottom: 10px;
+            margin-bottom: 0.5rem;
         }
 
         header p {
@@ -39,56 +51,51 @@
         /* Main Content */
         main {
             max-width: 800px;
-            margin: 40px auto;
-            padding: 24px;
-            background-color: #FFFFFF; /* White */
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-            border: 1px solid #E1E4EB; /* Light border */
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background-color: var(--background-white);
+            border-radius: 0.5rem;
+            box-shadow: var(--box-shadow);
+            border: 1px solid var(--border-light);
         }
 
         main p {
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 24px;
+            margin-bottom: 1.5rem;
         }
 
-        /* Freight Calculator Section */
+        /* Calculator Section */
         .calculator-section {
-            border: 1px solid #6C7A89; /* Slate Gray Border */
-            padding: 20px;
-            border-radius: 10px;
-            background-color: #F9FAFB; /* Light background for contrast */
+            border: 1px solid var(--border-medium);
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+            background-color: #F9FAFB; /* Slightly lighter than background-light for subtle contrast */
         }
 
-        iframe {
+        .calculator-section iframe {
             width: 100%;
             height: 600px;
             border: none;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 0.5rem;
+            box-shadow: var(--box-shadow);
         }
 
-        /* Footer Section */
+        /* Footer */
         footer {
             text-align: center;
-            padding: 15px 0;
-            background-color: #1E2A38; /* Deep Navy */
-            color: #FFFFFF; /* White */
-            margin-top: 40px;
-        }
-
-        footer p {
+            padding: 1rem 0;
+            background-color: var(--primary-color);
+            color: var(--text-color-secondary);
+            margin-top: 2rem;
             font-size: 0.9rem;
         }
 
         /* Buttons */
         button {
-            background-color: #00A8E8; /* Electric Blue */
-            color: #FFFFFF; /* White */
-            padding: 12px 20px;
+            background-color: var(--secondary-color);
+            color: var(--text-color-secondary);
+            padding: 0.75rem 1.25rem;
             border: none;
-            border-radius: 5px;
+            border-radius: 0.3rem;
             font-size: 1rem;
             cursor: pointer;
             transition: background-color 0.3s ease;
@@ -100,25 +107,21 @@
     </style>
 </head>
 <body>
-    <!-- Header Section -->
     <header>
-        <h1>Welcome to Supply Chain Tools</h1>
-        <p>Your go-to tools for optimizing supply chain processes.</p>
+        <h1>Supply Chain Tools</h1>
+        <p>Your central hub for optimizing supply chain efficiency.</p>
     </header>
 
-    <!-- Main Content -->
     <main>
-        <p>Use the Freight Density Calculator below to calculate the density and freight class of your shipment:</p>
+        <p>Utilize our Freight Density Calculator below to determine the density and freight class for your shipments:</p>
 
-        <!-- Freight Calculator Section -->
-        <div class="calculator-section">
-            <iframe src="calculator.html"></iframe>
-        </div>
+        <section class="calculator-section">
+            <iframe src="calculator.html" title="Freight Density Calculator"></iframe>
+        </section>
     </main>
 
-    <!-- Footer Section -->
     <footer>
-        <p>&copy; 2025 Supply Chain Tools. All Rights Reserved.</p>
+        <p>&copy; 2025 Supply Chain Tools. All rights reserved.</p>
     </footer>
 </body>
 </html>
