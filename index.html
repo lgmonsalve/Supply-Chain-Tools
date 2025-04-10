@@ -13,51 +13,40 @@
             box-sizing: border-box;
             background-color: #f4f7fc;
             color: #333;
-        }
-
-        /* Header Section */
-        header {
-            background-color: #007bff;
-            color: #fff;
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-        }
-
-        header p {
-            font-size: 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Ensures the body takes up the full viewport height */
         }
 
         /* Main Content */
         main {
             max-width: 800px;
-            margin: 30px auto;
-            padding: 20px;
+            width: 90%;
             background-color: #fff;
             border-radius: 10px;
+            padding: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border: 1px solid #e1e4eb;
+            text-align: center;
         }
 
-        /* Freight Calculator Styles */
+        h1 {
+            font-size: 2.5rem;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
         .container {
             max-width: 600px;
-            margin: auto;
-            background-color: #fff;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border: 1px solid #e1e4eb;
-        }
-
-        h2 {
-            text-align: center;
-            color: #007bff;
-            font-size: 24px;
+            margin: 0 auto;
+            text-align: left;
         }
 
         label {
@@ -74,12 +63,6 @@
             border-radius: 5px;
             border: 1px solid #ddd;
             font-size: 16px;
-            transition: border-color 0.3s;
-        }
-
-        input:focus {
-            border-color: #007bff;
-            outline: none;
         }
 
         button {
@@ -92,11 +75,6 @@
             font-size: 18px;
             margin-top: 20px;
             cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: #0056b3;
         }
 
         .result {
@@ -109,105 +87,16 @@
         .result span {
             color: #007bff;
         }
-
-        /* Footer Section */
-        footer {
-            text-align: center;
-            padding: 10px 0;
-            background-color: #007bff;
-            color: #fff;
-            margin-top: 40px;
-        }
-
-        footer p {
-            margin: 0;
-            font-size: 0.9rem;
-        }
     </style>
 </head>
 <body>
-    <!-- Header Section -->
-    <header>
-        <h1>Welcome to Supply Chain Tools</h1>
-        <p>Your go-to tools for optimizing supply chain processes.</p>
-    </header>
-
     <!-- Main Content -->
     <main>
-        <h2>Freight Density Calculator</h2>
-        <p>Use the Freight Density Calculator below to calculate the density and freight class of your shipment:</p>
+        <h1>Welcome to Supply Chain Tools</h1>
+        <p>Your go-to tools for optimizing supply chain processes.</p>
 
-        <!-- Freight Calculator Inline -->
+        <!-- Freight Calculator -->
         <div class="container">
             <h2>Freight Density Calculator</h2>
-            <label for="length">Length (inches):
-                <input type="number" id="length" step="any">
-            </label>
-            <label for="width">Width (inches):
-                <input type="number" id="width" step="any">
-            </label>
-            <label for="height">Height (inches):
-                <input type="number" id="height" step="any">
-            </label>
-            <label for="weight">Weight (pounds):
-                <input type="number" id="weight" step="any">
-            </label>
-            <button onclick="calculateDensity()">Calculate</button>
-
-            <div id="result" class="result"></div>
-            <div id="classResult" class="result"></div>
-        </div>
-    </main>
-
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy; 2025 Supply Chain Tools. All Rights Reserved.</p>
-    </footer>
-
-    <!-- JavaScript for Calculator -->
-    <script>
-        function calculateDensity() {
-            const length = parseFloat(document.getElementById('length').value);
-            const width = parseFloat(document.getElementById('width').value);
-            const height = parseFloat(document.getElementById('height').value);
-            const weight = parseFloat(document.getElementById('weight').value);
-
-            if (isNaN(length) || isNaN(width) || isNaN(height) || isNaN(weight)) {
-                document.getElementById('result').innerText = "Please fill in all fields.";
-                return;
-            }
-
-            const cubicInches = length * width * height;
-            const cubicFeet = cubicInches / 1728;
-            const density = weight / cubicFeet;
-
-            document.getElementById('result').innerText = `Density: ${density.toFixed(2)} lbs/ft³`;
-
-            let freightClass = '';
-            if (density <= 1) {
-                freightClass = 'Class 500';
-            } else if (density <= 2) {
-                freightClass = 'Class 400';
-            } else if (density <= 3) {
-                freightClass = 'Class 300';
-            } else if (density <= 4) {
-                freightClass = 'Class 250';
-            } else if (density <= 6) {
-                freightClass = 'Class 200';
-            } else if (density <= 10) {
-                freightClass = 'Class 150';
-            } else if (density <= 20) {
-                freightClass = 'Class 100';
-            } else if (density <= 30) {
-                freightClass = 'Class 85';
-            } else if (density <= 40) {
-                freightClass = 'Class 70';
-            } else {
-                freightClass = 'Class 50';
-            }
-
-            document.getElementById('classResult').innerText = `Freight Class: ${freightClass}`;
-        }
-    </script>
-</body>
-</html>
+           *
+
