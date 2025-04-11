@@ -5,33 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Supply Chain Tools</title>
     <style>
-        :root {
-            --primary-text: #1d1d1f;
-            --secondary-text: #6e6e73;
-            --link-color: #0071e3;
-            --background: #f5f5f7;
-            --white: #fff;
-            --border-color: #d2d2d7;
-            --font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-            --shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-            --radius: 0.5rem;
-        }
+        /* Your existing styles (abbreviated for brevity) */
         body {
-            font-family: var(--font-primary);
-            background-color: var(--background);
-            color: var(--primary-text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f5f5f7;
+            color: #1d1d1f;
             margin: 0;
             padding: 0;
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
         }
-        a {
-            color: var(--link-color);
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
+        a { color: #0071e3; text-decoration: none; }
+        a:hover { text-decoration: underline; }
         header {
             position: relative;
             background-image: url('bard.jpeg');
@@ -39,24 +22,21 @@
             background-position: center;
             height: 300px;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
             color: white;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.7);
         }
         header::before {
             content: '';
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
             z-index: 0;
         }
         header h1 {
             font-size: 2.2rem;
-            font-weight: 600;
             z-index: 1;
         }
         main {
@@ -64,161 +44,161 @@
             margin: 2rem auto;
             padding: 0 1.5rem;
         }
-        main > p {
-            font-size: 1.1rem;
-            color: var(--secondary-text);
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
         .tools-container {
             display: flex;
-            gap: 2rem;
             flex-wrap: wrap;
-            margin-bottom: 2rem;
+            gap: 2rem;
         }
         .tool-section {
-            background-color: var(--white);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
+            background-color: white;
+            border: 1px solid #d2d2d7;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
             padding: 1.5rem;
-            flex: 1;
-            min-width: 300px;
+            flex: 1 1 300px;
         }
-        .tool-section h2 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--primary-text);
-            margin-top: 0;
-        }
-        .tool-section p {
-            font-size: 1rem;
-            color: var(--secondary-text);
-            margin-bottom: 1rem;
-        }
-        .calculator-iframe {
+        .calculator-iframe, .incoterms-image {
             width: 100%;
-            height: auto;
-            border: none;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border-color);
-            display: block;
-        }
-        .incoterms-image {
-            width: 100%;
-            object-fit: contain;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border-color);
-        }
-        .hs-code-finder-container label {
-            display: block;
-            font-size: 1rem;
-            color: var(--primary-text);
-            margin-bottom: 0.5rem;
-        }
-        .hs-code-finder-container input[type="text"] {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            margin-bottom: 1rem;
-            font-size: 1rem;
-            box-sizing: border-box;
-        }
-        #chemical-hs-result {
-            margin-top: 1rem;
-            font-size: 1rem;
-            color: var(--primary-text);
-            font-weight: bold;
+            border: 1px solid #d2d2d7;
+            border-radius: 0.5rem;
         }
         footer {
             text-align: center;
-            padding: 2rem 0;
-            background-color: var(--white);
-            color: var(--secondary-text);
-            border-top: 1px solid var(--border-color);
-            font-size: 0.9rem;
-        }
-        @media (max-width: 1200px) {
-            .tools-container {
-                flex-direction: column;
-            }
-            header h1 {
-                font-size: 1.8rem;
-            }
+            padding: 2rem;
+            background-color: white;
+            color: #6e6e73;
+            border-top: 1px solid #d2d2d7;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Supply Chain Tools</h1>
-    </header>
 
-    <main>
-        <p>Explore our suite of tools designed to optimize your supply chain management:</p>
+<header>
+    <h1>Supply Chain Tools</h1>
+</header>
 
-        <div class="tools-container">
-            <section class="tool-section">
-                <h2>Freight Density Calculator</h2>
-                <p>Accurately calculate freight density and class for efficient shipping.</p>
-                <iframe class="calculator-iframe" src="calculator.html" title="Freight Density Calculator" scrolling="no"></iframe>
-            </section>
+<main>
+    <p>Explore our suite of tools designed to optimize your supply chain management:</p>
+    <div class="tools-container">
 
-            <section class="tool-section">
-                <h2>Incoterms 2020 Chart</h2>
-                <p>Understand international trade terms with our comprehensive Incoterms 2020 chart.</p>
-                <img class="incoterms-image" src="Incoterms 2020.png" alt="Incoterms 2020 Chart" />
-            </section>
+        <section class="tool-section">
+            <h2>Freight Density Calculator</h2>
+            <p>Accurately calculate freight density and class for efficient shipping.</p>
+            <iframe class="calculator-iframe" src="calculator.html" title="Freight Density Calculator" scrolling="no"></iframe>
+        </section>
 
-            <section class="tool-section hs-code-finder-container">
-                <h2>Chemical HS Code Finder</h2>
-                <p>Enter a chemical name or SMILES string to receive a suggested HS Code based on structure.</p>
-                <label for="chemical-input">Chemical Name or SMILES:</label>
-                <input type="text" id="chemical-input" placeholder="e.g. Acetone or CC(=O)C" />
-                <div id="chemical-hs-result">Suggested HS Code will appear here.</div>
-            </section>
-        </div>
-    </main>
+        <section class="tool-section">
+            <h2>Incoterms 2020 Chart</h2>
+            <p>Understand international trade terms with our comprehensive Incoterms 2020 chart.</p>
+            <img class="incoterms-image" src="Incoterms 2020.png" alt="Incoterms 2020 Chart" />
+        </section>
 
-    <footer>
-        <p>&copy; 2025 Supply Chain Tools. All rights reserved.</p>
-    </footer>
+        <section class="tool-section">
+            <h2>HS Code Finder (Text Search)</h2>
+            <label for="hs-code-search">Search HS Codes:</label>
+            <input type="text" id="hs-code-search" placeholder="Enter keyword or HS code" style="width:100%;padding:0.75rem;margin-bottom:1rem;">
+            <div class="hs-code-list" style="max-height:200px;overflow-y:auto;border:1px solid #d2d2d7;border-radius:0.5rem;">
+                <ul id="hs-code-results" style="list-style:none;margin:0;padding:0;"></ul>
+            </div>
+            <div id="selected-hs-code" style="margin-top:1rem;font-weight:bold;"></div>
+        </section>
 
-    <script>
-        const chemicalInput = document.getElementById('chemical-input');
-        const chemicalResult = document.getElementById('chemical-hs-result');
+        <section class="tool-section">
+            <h2>Chemical HS Code Finder (Image-Based)</h2>
+            <p>Upload a chemical structure image to automatically find the correct HS code.</p>
+            <input type="file" id="image-upload" accept="image/*" />
+            <button onclick="submitImage()">Submit</button>
+            <div id="image-result" style="margin-top: 1rem; font-weight: bold;"></div>
+        </section>
 
-        const sampleChemicals = {
-            "acetone": { code: "2914.11", description: "Acetone (propan-2-one)" },
-            "cc(=o)c": { code: "2914.11", description: "Acetone (SMILES match)" },
-            "hcl": { code: "2806.10", description: "Hydrogen chloride (hydrochloric acid)" },
-            "naoh": { code: "2815.12", description: "Sodium hydroxide (caustic soda)" },
-            "c6h6": { code: "2902.20", description: "Benzene" }
-        };
+    </div>
+</main>
 
-        chemicalInput.addEventListener('input', function () {
-            const query = this.value.trim().toLowerCase();
-            const match = sampleChemicals[query];
+<footer>
+    <p>&copy; 2025 Supply Chain Tools. All rights reserved.</p>
+</footer>
 
-            if (match) {
-                chemicalResult.textContent = `HS Code: ${match.code} – ${match.description}`;
-            } else if (query.length > 3) {
-                chemicalResult.textContent = "No direct match found. Try a different name or SMILES.";
+<script>
+    const hsCodeData = [
+        { code: "8413.70", description: "Pumps for liquids" },
+        { code: "6203.42", description: "Trousers, of cotton" },
+        { code: "3926.20", description: "Apparel of plastics" },
+        { code: "4819.10", description: "Cartons, of paperboard" },
+        { code: "8517.62", description: "Reception apparatus for voice" },
+        { code: "9506.62", description: "Balls (not golf or table-tennis)" },
+        { code: "7326.90", description: "Articles of iron or steel, n.e.s." },
+        { code: "2915.24", description: "Dodecanoic acid salts" },
+        { code: "9004.10", description: "Sunglasses" },
+        { code: "4202.12", description: "Suitcases with plastic surface" }
+    ];
+
+    const searchInput = document.getElementById('hs-code-search');
+    const resultsList = document.getElementById('hs-code-results');
+    const selectedHSCodeDiv = document.getElementById('selected-hs-code');
+
+    searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        const filteredCodes = hsCodeData.filter(item =>
+            item.code.toLowerCase().includes(searchTerm) ||
+            item.description.toLowerCase().includes(searchTerm)
+        );
+        displayResults(filteredCodes);
+    });
+
+    function displayResults(results) {
+        resultsList.innerHTML = '';
+        if (results.length === 0) {
+            const li = document.createElement('li');
+            li.textContent = 'No matching HS codes found.';
+            resultsList.appendChild(li);
+        } else {
+            results.forEach(item => {
+                const li = document.createElement('li');
+                li.innerHTML = `<span style="font-weight:bold;">${item.code}</span> <span>${item.description}</span>`;
+                li.style.cursor = "pointer";
+                li.style.padding = "0.5rem";
+                li.addEventListener('click', function () {
+                    selectedHSCodeDiv.textContent = `Selected HS Code: ${item.code} - ${item.description}`;
+                });
+                resultsList.appendChild(li);
+            });
+        }
+    }
+
+    async function submitImage() {
+        const input = document.getElementById('image-upload');
+        const resultDiv = document.getElementById('image-result');
+        resultDiv.textContent = "Processing...";
+
+        if (!input.files[0]) {
+            resultDiv.textContent = "Please select an image.";
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append("image", input.files[0]);
+
+        try {
+            const response = await fetch("https://your-subdomain.up.railway.app/predict-hs", {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (data.hs_code) {
+                resultDiv.textContent = `HS Code: ${data.hs_code} — ${data.description}`;
             } else {
-                chemicalResult.textContent = "";
+                resultDiv.textContent = "No HS code found.";
             }
-        });
+        } catch (error) {
+            console.error("Error:", error);
+            resultDiv.textContent = "An error occurred while processing the image.";
+        }
+    }
 
-        window.addEventListener('message', function(event) {
-            if (event.data.type === 'setIframeHeight') {
-                const iframe = document.querySelector('.calculator-iframe');
-                if (iframe) {
-                    iframe.style.height = event.data.height + 'px';
-                }
-            }
-        });
-    </script>
+    displayResults([]);
+</script>
+
 </body>
 </html>
