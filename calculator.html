@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Freight Density Calculator</title>
     <style>
-        /* Basic Calculator Styles */
         body {
             font-family: sans-serif;
             margin: 20px;
@@ -16,38 +15,40 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
+            max-width: 350px;
             margin: 0 auto;
         }
         h2 {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             color: #333;
         }
         .input-group {
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
         label {
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
             color: #555;
+            font-size: 0.9rem;
         }
         input[type="number"] {
             width: 100%;
-            padding: 10px;
+            padding: 8px;
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
+            font-size: 0.9rem;
         }
         button {
             background-color: #007bff;
             color: white;
-            padding: 10px 15px;
+            padding: 8px 12px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.9rem;
             transition: background-color 0.3s ease;
             width: 100%;
         }
@@ -55,22 +56,23 @@
             background-color: #0056b3;
         }
         .result {
-            margin-top: 20px;
-            padding: 15px;
+            margin-top: 15px;
+            padding: 10px;
             background-color: #e9ecef;
             border-radius: 4px;
             color: #333;
-            font-size: 1rem;
+            font-size: 0.9rem;
             word-break: break-word;
         }
         .result h3 {
             margin-top: 0;
             color: #333;
+            font-size: 1rem;
         }
         .note {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             color: #777;
-            margin-top: 10px;
+            margin-top: 8px;
         }
     </style>
 </head>
@@ -93,13 +95,12 @@
             <label for="weight">Weight (pounds):</label>
             <input type="number" id="weight" name="weight" required>
         </div>
-        <button onclick="calculateDensity()">Calculate Density & Class</button>
-        <div class="result" id="result">
+        <button onclick="calculateDensity()">Calculate</button>
+        <div class="result" id="result" style="display:none;">
             <h3>Result</h3>
             <p id="density"></p>
-            <p id="freightClass"></p>
         </div>
-        <p class="note">This is a simplified calculator. Freight class can depend on various factors beyond just density.</p>
+        <p class="note">Simplified calculator.</p>
     </div>
 
     <script>
@@ -110,53 +111,20 @@
             const weight = parseFloat(document.getElementById('weight').value);
             const resultDiv = document.getElementById('result');
             const densityDisplay = document.getElementById('density');
-            const freightClassDisplay = document.getElementById('freightClass');
 
             if (isNaN(length) || isNaN(width) || isNaN(height) || isNaN(weight)) {
-                densityDisplay.textContent = "Please enter valid numbers for all fields.";
-                freightClassDisplay.textContent = "";
+                densityDisplay.textContent = "Please enter valid numbers.";
                 resultDiv.style.display = 'block';
                 return;
             }
 
             const volumeCubicInches = length * width * height;
-            const densityPoundsPerCubicFoot = weight / (volumeCubicInches / 1728); // 1728 cubic inches in a cubic foot
+            const densityPoundsPerCubicFoot = weight / (volumeCubicInches / 1728);
             const densityRounded = densityPoundsPerCubicFoot.toFixed(2);
 
-            let freightClass = "Varies";
-            if (densityPoundsPerCubicFoot >= 50) {
-                freightClass = "50";
-            } else if (densityPoundsPerCubicFoot >= 35) {
-                freightClass = "55";
-            } else if (densityPoundsPerCubicFoot >= 30) {
-                freightClass = "60";
-            } else if (densityPoundsPerCubicFoot >= 22.5) {
-                freightClass = "65";
-            } else if (densityPoundsPerCubicFoot >= 15) {
-                freightClass = "70";
-            } else if (densityPoundsPerCubicFoot >= 13.5) {
-                freightClass = "77.5";
-            } else if (densityPoundsPerCubicFoot >= 12) {
-                freightClass = "85";
-            } else if (densityPoundsPerCubicFoot >= 10.5) {
-                freightClass = "92.5";
-            } else if (densityPoundsPerCubicFoot >= 9) {
-                freightClass = "100";
-            } else if (densityPoundsPerCubicFoot >= 7) {
-                freightClass = "110";
-            } else if (densityPoundsPerCubicFoot >= 6) {
-                freightClass = "125";
-            } else if (densityPoundsPerCubicFoot >= 5) {
-                freightClass = "150";
-            } else {
-                freightClass = "200+";
-            }
-
             densityDisplay.textContent = `Density: ${densityRounded} lbs/cubic foot`;
-            freightClassDisplay.textContent = `Estimated Freight Class: ${freightClass}`;
             resultDiv.style.display = 'block';
 
-            // Send height to parent window for iframe resizing
             if (window.parent && window.parent !== window) {
                 window.parent.postMessage({
                     type: 'setIframeHeight',
@@ -165,7 +133,6 @@
             }
         }
 
-        // Send initial height to parent window on load
         window.onload = function() {
             if (window.parent && window.parent !== window) {
                 window.parent.postMessage({
