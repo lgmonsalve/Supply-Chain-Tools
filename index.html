@@ -1,301 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supply Chain Tools</title>
-    <style>
-        /* Inspired by apple.com */
-        :root {
-            --primary-text: #1d1d1f;
-            --secondary-text: #6e6e73;
-            --link-color: #0071e3;
-            --background: #f5f5f7;
-            --white: #fff;
-            --border-color: #d2d2d7;
-            --font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-            --font-headline: var(--font-primary);
-            --font-body: var(--font-primary);
-            --shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-            --radius: 0.5rem;
-        }
-        body {
-            font-family: var(--font-body);
-            background-color: var(--background);
-            color: var(--primary-text);
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        a {
-            color: var(--link-color);
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-               header {
-            position: relative;
-            background-image: url('bard.jpeg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            height: 300px; /* Adjust the height as needed */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7); /* Improves readability on the image */
-        }
-
-        /* Dark overlay for visibility */
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity as needed (0.5 = 50% opacity) */
-            z-index: 0;
-        }
-        header h1 {
-            font-family: var(--font-headline);
-            font-size: 2.2rem;
-            font-weight: 600;
-            margin-bottom: 0.3rem;
-        }
-        header p {
-            font-size: 1rem;
-            color: var(--secondary-text);
-        }
-        main {
-            max-width: 1600px;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
-        }
-        main > p {
-            font-size: 1.1rem;
-            color: var(--secondary-text);
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-        .tools-container {
-            display: flex;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        .tool-section {
-            background-color: var(--white);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 1.5rem;
-            flex: 1;
-            min-width: 0;
-        }
-        .tool-section h2 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--primary-text);
-            margin-top: 0;
-            margin-bottom: 1rem;
-        }
-        .tool-section p {
-            font-size: 1rem;
-            color: var(--secondary-text);
-            margin-bottom: 1rem;
-        }
-        .calculator-iframe {
-            width: 100%;
-            height: auto;
-            border: none;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border-color);
-            display: block;
-        }
-        .incoterms-image {
-            width: 100%;
-            object-fit: contain;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border-color);
-        }
-        .hs-code-finder-container label {
-            display: block;
-            font-size: 1rem;
-            color: var(--primary-text);
-            margin-bottom: 0.5rem;
-        }
-        .hs-code-finder-container input[type="text"] {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            margin-bottom: 1rem;
-            font-size: 1rem;
-            box-sizing: border-box;
-        }
-        .hs-code-list {
-            overflow-y: auto;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            margin-bottom: 1rem;
-            max-height: 200px; /* Reduced initial height for simplicity */
-        }
-        .hs-code-list ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .hs-code-list li {
-            padding: 0.75rem;
-            border-bottom: 1px solid var(--border-color);
-            font-size: 0.9rem;
-            color: var(--secondary-text);
-            display: flex;
-            justify-content: space-between;
-            cursor: pointer; /* Indicate it's selectable */
-        }
-        .hs-code-list li:last-child {
-            border-bottom: none;
-        }
-        .hs-code {
-            font-weight: bold;
-            color: var(--primary-text);
-            margin-right: 1rem;
-        }
-        #selected-hs-code {
-            margin-top: 1rem;
-            font-size: 1rem;
-            color: var(--primary-text);
-            font-weight: bold;
-        }
-        footer {
-            text-align: center;
-            padding: 2rem 0;
-            background-color: var(--white);
-            color: var(--secondary-text);
-            border-top: 1px solid var(--border-color);
-            font-size: 0.9rem;
-        }
-        @media (max-width: 1200px) {
-            .tools-container {
-                flex-direction: column;
-            }
-            main {
-                padding: 0 1rem;
-            }
-            header h1 {
-                font-size: 1.8rem;
-            }
-            header p {
-                font-size: 0.9rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chemical HS Code Finder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f9fc;
+      color: #333;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    input[type="text"], button {
+      padding: 10px;
+      margin-top: 10px;
+      width: 100%;
+      font-size: 1rem;
+    }
+    .output {
+      margin-top: 20px;
+      background: #ecf0f1;
+      padding: 15px;
+      border-radius: 8px;
+    }
+    footer {
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #7f8c8d;
+    }
+  </style>
 </head>
 <body>
-    <header>
-       <h1>Supply Chain Tools</h1>
-    </header>
+  <h1>⚗️ Chemical HS Code Finder</h1>
+  <p>
+    Automatically classify chemicals by structure — no chemistry degree required.
+    Input a chemical name, SMILES string, or IUPAC name below.
+  </p>
 
-    <main>
-        <p>Explore our suite of tools designed to optimize your supply chain management:</p>
+  <input type="text" id="chemicalInput" placeholder="e.g., Acetone or CC(=O)C" />
+  <button onclick="classifyChemical()">Find HS Code</button>
 
-        <div class="tools-container">
-            <section class="tool-section">
-                <h2>Freight Density Calculator</h2>
-                <p>Accurately calculate freight density and class for efficient shipping.</p>
-                <iframe class="calculator-iframe" src="calculator.html" title="Freight Density Calculator" scrolling="no"></iframe>
-            </section>
+  <div class="output" id="result">
+    Enter a chemical above to get started.
+  </div>
 
-            <section class="tool-section">
-                <h2>Incoterms 2020 Chart</h2>
-                <p>Understand international trade terms with our comprehensive Incoterms 2020 chart.</p>
-                <img class="incoterms-image" src="Incoterms 2020.png" alt="Incoterms 2020 Chart">
-            </section>
+  <footer>
+    * This tool provides guidance only and should be verified against official HS classification resources.
+  </footer>
 
-            <section class="tool-section hs-code-finder-container">
-                <h2>HS Code Finder</h2>
-                <label for="hs-code-search">Search HS Codes:</label>
-                <input type="text" id="hs-code-search" placeholder="Enter keyword or HS code">
-                <div class="hs-code-list">
-                    <ul id="hs-code-results">
-                        </ul>
-                </div>
-                <div id="selected-hs-code"></div>
-            </section>
-        </div>
-    </main>
+  <script>
+    async function classifyChemical() {
+      const input = document.getElementById('chemicalInput').value.trim();
+      const resultDiv = document.getElementById('result');
 
-    <footer>
-        <p>&copy; 2025 Supply Chain Tools. All rights reserved.</p>
-    </footer>
+      if (!input) {
+        resultDiv.innerHTML = "Please enter a chemical name or structure.";
+        return;
+      }
 
-    <script>
-        const hsCodeData = [
-            { code: "8413.70", description: "Pumps for liquids" },
-            { code: "6203.42", description: "Trousers, of cotton" },
-            { code: "3926.20", description: "Apparel of plastics" },
-            { code: "4819.10", description: "Cartons, of paperboard" },
-            { code: "8517.62", description: "Reception apparatus for voice" },
-            { code: "9506.62", description: "Balls (not golf or table-tennis)" },
-            { code: "7326.90", description: "Articles of iron or steel, n.e.s." },
-            { code: "2915.24", description: "Dodecanoic acid salts" },
-            { code: "9004.10", description: "Sunglasses" },
-            { code: "4202.12", description: "Suitcases with plastic surface" },
-            // Add more HS codes here for a more comprehensive list
-        ];
-
-        const searchInput = document.getElementById('hs-code-search');
-        const resultsList = document.getElementById('hs-code-results');
-        const selectedHSCodeDiv = document.getElementById('selected-hs-code');
-
-        searchInput.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase();
-            const filteredCodes = hsCodeData.filter(item =>
-                item.code.toLowerCase().includes(searchTerm) ||
-                item.description.toLowerCase().includes(searchTerm)
-            );
-            displayResults(filteredCodes);
-        });
-
-        function displayResults(results) {
-            resultsList.innerHTML = '';
-            if (results.length === 0) {
-                const li = document.createElement('li');
-                li.textContent = 'No matching HS codes found.';
-                resultsList.appendChild(li);
-            } else {
-                results.forEach(item => {
-                    const li = document.createElement('li');
-                    li.innerHTML = `<span class="hs-code">${item.code}</span><span>${item.description}</span>`;
-                    li.addEventListener('click', function() {
-                        selectedHSCodeDiv.textContent = `Selected HS Code: ${item.code} - ${item.description}`;
-                    });
-                    resultsList.appendChild(li);
-                });
-            }
-        }
-
-        // Initial display (optional - can start with an empty list)
-        displayResults([]);
-
-        window.addEventListener('message', function(event) {
-            if (event.data.type === 'setIframeHeight') {
-                const iframe = document.querySelector('.calculator-iframe');
-                if (iframe) {
-                    iframe.style.height = event.data.height + 'px';
-                }
-            }
-        });
-    </script>
+      // Placeholder logic for classification - replace with real model/API
+      if (input.toLowerCase().includes("acetone") || input.includes("CC(=O)C")) {
+        resultDiv.innerHTML = `
+          <strong>HS Code:</strong> 2914.11<br>
+          <strong>Description:</strong> Acetone - classified under organic chemicals (Chapter 29, ketones).`;
+      } else {
+        resultDiv.innerHTML = `
+          <strong>HS Code:</strong> (example) 2905.11<br>
+          <strong>Description:</strong> Detected structure classified under alcohols or similar organic compounds.<br>
+          <em>* This is a simulated result. Full integration pending.</em>`;
+      }
+    }
+  </script>
 </body>
 </html>
