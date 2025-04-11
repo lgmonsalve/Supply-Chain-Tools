@@ -27,20 +27,35 @@
       line-height: 1.6;
     }
 
-    header {
-      padding: 2rem 1rem 1rem;
+    /* Header Image Banner */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 280px;
+      background: url("bard.jpeg") center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
       text-align: center;
     }
 
-    header h1 {
-      font-size: 2rem;
-      margin: 0 0 0.5rem;
+    .hero-overlay {
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 2rem 1rem;
+      width: 100%;
     }
 
-    header p {
-      color: var(--muted-color);
+    .hero h1 {
       margin: 0;
+      font-size: 2.2rem;
+      font-weight: 600;
+    }
+
+    .hero p {
+      margin: 0.5rem 0 0;
       font-size: 1rem;
+      color: #e0e0e0;
     }
 
     main {
@@ -54,78 +69,5 @@
     }
 
     section h2 {
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
-    }
+      font-size: 1.3rem
 
-    section p {
-      color: var(--muted-color);
-      max-width: 60ch;
-      margin: 0 0 1.5rem;
-    }
-
-    iframe.calculator {
-      width: 100%;
-      height: 600px;
-      border: 1px solid #ccc;
-      border-radius: 0.5rem;
-    }
-
-    img.incoterms {
-      width: 100%;
-      max-width: 100%;
-      height: auto;
-      border-radius: 0.5rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-      color: var(--muted-color);
-    }
-
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 1.6rem;
-      }
-
-      section h2 {
-        font-size: 1.2rem;
-      }
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Supply Chain Tools</h1>
-    <p>Essential tools for freight and global trade.</p>
-  </header>
-
-  <main>
-    <section>
-      <h2>Freight Density Calculator</h2>
-      <p>Quickly calculate the density and class of your shipment to optimize transportation costs.</p>
-      <iframe 
-        class="calculator" 
-        src="calculator.html" 
-        title="Freight Density Calculator" 
-        loading="lazy">
-      </iframe>
-    </section>
-
-    <section>
-      <h2>Incoterms 2020 Chart</h2>
-      <p>Gain clarity on responsibilities in global trade using the updated Incoterms chart.</p>
-      <img 
-        class="incoterms" 
-        src="Incoterms 2020.png" 
-        alt="Incoterms 2020 Chart">
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 Supply Chain Tools. All rights reserved.</p>
-  </footer>
-</body>
-</html>
