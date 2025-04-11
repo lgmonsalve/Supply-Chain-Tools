@@ -110,10 +110,10 @@
             margin-bottom: 1rem;
         }
 
-        /* Calculator Iframe */
+        /* Calculator Iframe (No Fixed Height) */
         .calculator-iframe {
             width: 100%;
-            height: auto;
+            height: auto; /* Let the content determine the height */
             border: none;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
@@ -124,7 +124,7 @@
         /* Incoterms Image */
         .incoterms-image {
             width: 100%;
-            max-height: 500px; /* Adjust as needed */
+            /* Removed max-height */
             object-fit: contain;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
@@ -150,7 +150,7 @@
         }
 
         .hs-code-list {
-            max-height: 400px; /* Adjust as needed */
+            /* Removed max-height */
             overflow-y: auto;
             border: 1px solid var(--border-color);
             border-radius: var(--radius);
@@ -262,7 +262,7 @@
             { code: "2915.24", description: "Dodecanoic acid, its salts and esters" },
             { code: "9004.10", description: "Sunglasses" },
             { code: "4202.12", description: "Trunks, suitcases, vanity-cases, executive-cases, briefcases, school satchels and similar containers, with outer surface of plastics or of textile materials" },
-            // Add more HS codes and descriptions here (up to ~500-1000 as discussed)
+            // Add more HS codes and descriptions here
             { code: "0102.21", description: "Live bovine animals, pure-bred breeding animals" },
             { code: "0201.30", description: "Meat of bovine animals, fresh or chilled, boneless" },
             { code: "0302.11", description: "Salmon, Pacific, Atlantic and Danube, fresh or chilled, excluding fillets and other fish meat of heading 0304" },
@@ -299,11 +299,4 @@
             { code: "3401.11", description: "Toilet soap in bars, cakes, moulded pieces or shapes" },
             { code: "3506.10", description: "Adhesives based on polymers of headings 3901 to 3913 or on rubber" },
             { code: "3606.90", description: "Ferro-cerium and other pyrophoric alloys in all forms; articles of combustible materials as specified in note 2 to this chapter, other" },
-            { code: "3707.90", description: "Chemical preparations for photographic uses (other than varnishes, glues, adhesives and similar preparations); unmixed products for photographic uses, put up in measured portions or put up for retail sale in a form ready for use" },
-            { code: "3808.94", description: "Insecticides, put up for retail sale or as preparations or articles (for example, sulphur-treated bands, wicks, candles, fly-papers)" },
-            { code: "3923.21", description: "Sacks and bags (including cones), of polymers of ethylene" },
-            { code: "4011.10", description: "New pneumatic tyres, of rubber, of a kind used on motor cars (including station wagons and racing cars)" },
-            { code: "4107.12", description: "Leather further prepared after tanning or crusting, including parchment-dressed leather, of bovine (including buffalo) or equine animals, without hair on, other, whole hides and skins, of a weight per hide or skin not exceeding 16 kg" },
-            { code: "4203.29", description: "Other articles of apparel and clothing accessories, of leather or of composition leather, other than gloves, mittens and mitts" },
-            { code: "4303.10", description: "Articles of apparel and clothing accessories, of furskin" },
-            { code: "4411.12", description: "Fibreboard of a density exceeding 0.8 g/cm³, not
+            { code: "3707.90", description: "Chemical preparations for photographic uses (other than varnishes, glues, adhesives and similar preparations); unmixed products for photographic uses, put up in measured portions or
