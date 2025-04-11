@@ -4,32 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supply Chain Tools</title>
+    <meta name="description" content="A suite of tools to streamline supply chain operations, including a freight calculator and an expanded Incoterms 2020 chart.">
+    <meta property="og:title" content="Supply Chain Tools">
+    <meta property="og:description" content="Explore our powerful tools like the freight density calculator and Incoterms 2020 chart to optimize your logistics.">
+    <meta property="og:image" content="Incoterms 2020.png">
     <style>
-        /* Inspired by apple.com */
-
-        /* Base Styles */
         :root {
-            --primary-text: #1d1d1f; /* Near black */
-            --secondary-text: #6e6e73; /* Gray */
-            --link-color: #0071e3; /* Apple blue */
-            --background: #f5f5f7; /* Light gray background */
+            --primary-text: #1d1d1f;
+            --secondary-text: #505054; /* Slightly darker for better contrast */
+            --link-color: #0071e3;
+            --background: #f5f5f7;
             --white: #fff;
-            --border-color: #d2d2d7; /* Light gray border */
-            --font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-            --font-headline: var(--font-primary);
-            --font-body: var(--font-primary);
+            --border-color: #d2d2d7;
+            --font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             --shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
             --radius: 0.5rem;
         }
 
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: var(--font-body);
+            font-family: var(--font-primary);
             background-color: var(--background);
             color: var(--primary-text);
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            line-height: 1.5;
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
@@ -43,20 +45,17 @@
             text-decoration: underline;
         }
 
-        /* Header */
         header {
             background-color: var(--white);
-            color: var(--primary-text);
             text-align: center;
-            padding: 1.5rem 0;
+            padding: 1.5rem 1rem;
             border-bottom: 1px solid var(--border-color);
         }
 
         header h1 {
-            font-family: var(--font-headline);
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             font-weight: 600;
-            margin-bottom: 0.3rem;
+            margin: 0.5rem 0;
         }
 
         header p {
@@ -64,41 +63,37 @@
             color: var(--secondary-text);
         }
 
-        /* Main Content */
         main {
             max-width: 1200px;
             margin: 2rem auto;
-            padding: 0 1.5rem; /* Add horizontal padding for smaller screens */
+            padding: 0 1.5rem;
         }
 
         main > p {
             font-size: 1.1rem;
             color: var(--secondary-text);
-            margin-bottom: 1.5rem;
-            text-align: center; /* Center the introductory text */
-        }
-
-        /* Tools Container */
-        .tools-container {
-            display: flex;
-            gap: 2rem;
+            text-align: center;
             margin-bottom: 2rem;
         }
 
-        /* Tool Section */
+        .tools-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
         .tool-section {
             background-color: var(--white);
             border: 1px solid var(--border-color);
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             padding: 1.5rem;
-            flex: 1;
+            flex: 1 1 48%;
         }
 
         .tool-section h2 {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 600;
-            color: var(--primary-text);
             margin-top: 0;
             margin-bottom: 1rem;
         }
@@ -109,44 +104,39 @@
             margin-bottom: 1rem;
         }
 
-        /* Calculator Iframe */
         .calculator-iframe {
             width: 100%;
-            height: 600px; /* Adjust height as needed */
-            border: none;
+            height: 600px;
+            border: 1px solid var(--border-color);
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            border: 1px solid var(--border-color);
         }
 
-        /* Incoterms Image */
         .incoterms-image {
             width: 100%;
-            max-height: 600px; /* Match iframe height */
-            object-fit: contain;
+            height: auto;
+            max-height: none;
             border-radius: var(--radius);
-            box-shadow: var(--shadow);
             border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
         }
 
-        /* Footer */
         footer {
             text-align: center;
-            padding: 2rem 0;
+            padding: 2rem 1rem;
             background-color: var(--white);
             color: var(--secondary-text);
             border-top: 1px solid var(--border-color);
             font-size: 0.9rem;
         }
 
-        /* Responsive Design */
         @media (max-width: 900px) {
             .tools-container {
                 flex-direction: column;
             }
 
-            main {
-                padding: 0 1rem;
+            .tool-section {
+                flex: 1 1 100%;
             }
 
             header h1 {
@@ -169,16 +159,25 @@
         <p>Explore our suite of tools designed to optimize your supply chain management:</p>
 
         <div class="tools-container">
-            <section class="tool-section">
+            <section class="tool-section" aria-label="Freight Density Calculator">
                 <h2>Freight Density Calculator</h2>
                 <p>Accurately calculate freight density and class for efficient shipping.</p>
-                <iframe class="calculator-iframe" src="calculator.html" title="Freight Density Calculator"></iframe>
+                <iframe 
+                    class="calculator-iframe" 
+                    src="calculator.html" 
+                    title="Freight Density Calculator" 
+                    loading="lazy">
+                </iframe>
             </section>
 
-            <section class="tool-section">
+            <section class="tool-section" aria-label="Incoterms 2020 Chart">
                 <h2>Incoterms 2020 Chart</h2>
                 <p>Understand international trade terms with our comprehensive Incoterms 2020 chart.</p>
-                <img class="incoterms-image" src="Incoterms 2020.png" alt="Incoterms 2020 Chart">
+                <img 
+                    class="incoterms-image" 
+                    src="Incoterms 2020.png" 
+                    alt="Incoterms 2020 chart detailing international trade responsibilities and terms" 
+                    loading="lazy">
             </section>
         </div>
     </main>
@@ -188,3 +187,4 @@
     </footer>
 </body>
 </html>
+
