@@ -93,7 +93,7 @@
         }
         .calculator-iframe {
             width: 100%;
-            height: 600px;
+            height: auto;
             border: none;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
@@ -127,7 +127,7 @@
             border: 1px solid var(--border-color);
             border-radius: var(--radius);
             margin-bottom: 1rem;
-            max-height: 400px;
+            max-height: 200px; /* Reduced initial height for simplicity */
         }
         .hs-code-list ul {
             list-style: none;
@@ -141,6 +141,7 @@
             color: var(--secondary-text);
             display: flex;
             justify-content: space-between;
+            cursor: pointer; /* Indicate it's selectable */
         }
         .hs-code-list li:last-child {
             border-bottom: none;
@@ -149,6 +150,12 @@
             font-weight: bold;
             color: var(--primary-text);
             margin-right: 1rem;
+        }
+        #selected-hs-code {
+            margin-top: 1rem;
+            font-size: 1rem;
+            color: var(--primary-text);
+            font-weight: bold;
         }
         footer {
             text-align: center;
@@ -193,7 +200,7 @@
             <section class="tool-section">
                 <h2>Incoterms 2020 Chart</h2>
                 <p>Understand international trade terms with our comprehensive Incoterms 2020 chart.</p>
-                <img class="incoterms-image" src="Incoterms 2020.png" alt="Incoterms 2020 Chart">
+                <img class="incoterms-image" src="incoterms2020.png" alt="Incoterms 2020 Chart">
             </section>
 
             <section class="tool-section hs-code-finder-container">
@@ -204,6 +211,7 @@
                     <ul id="hs-code-results">
                         </ul>
                 </div>
+                <div id="selected-hs-code"></div>
             </section>
         </div>
     </main>
@@ -214,63 +222,61 @@
 
     <script>
         const hsCodeData = [
-            { code: "8413.70", description: "Pumps for liquids, whether or not fitted with a measuring device" },
-            { code: "6203.42", description: "Men's or boys' trousers, breeches and shorts, of cotton" },
-            { code: "3926.20", description: "Articles of apparel and clothing accessories, of plastics" },
-            { code: "4819.10", description: "Cartons, boxes and cases, of corrugated paper or paperboard" },
-            { code: "8517.62", description: "Machines for the reception, conversion and transmission or regeneration of voice, images or other data, including switching and routing apparatus" },
-            { code: "9506.62", description: "Balls (other than golf balls and table-tennis balls)" },
-            { code: "7326.90", description: "Other articles of iron or steel, n.e.s." },
-            { code: "2915.24", description: "Dodecanoic acid, its salts and esters" },
+            { code: "8413.70", description: "Pumps for liquids" },
+            { code: "6203.42", description: "Trousers, of cotton" },
+            { code: "3926.20", description: "Apparel of plastics" },
+            { code: "4819.10", description: "Cartons, of paperboard" },
+            { code: "8517.62", description: "Reception apparatus for voice" },
+            { code: "9506.62", description: "Balls (not golf or table-tennis)" },
+            { code: "7326.90", description: "Articles of iron or steel, n.e.s." },
+            { code: "2915.24", description: "Dodecanoic acid salts" },
             { code: "9004.10", description: "Sunglasses" },
-            { code: "4202.12", description: "Trunks, suitcases, vanity-cases, executive-cases, briefcases, school satchels and similar containers, with outer surface of plastics or of textile materials" },
-            { code: "0102.21", description: "Live bovine animals, pure-bred breeding animals" },
-            { code: "0201.30", description: "Meat of bovine animals, fresh or chilled, boneless" },
-            { code: "0302.11", description: "Salmon, Pacific, Atlantic and Danube, fresh or chilled, excluding fillets and other fish meat of heading 0304" },
-            { code: "0402.10", description: "Milk and cream in powder, granules or other solid forms, of a fat content, by weight, not exceeding 1.5 %" },
-            { code: "0505.10", description: "Feathers of a kind used for stuffing; down" },
-            { code: "0603.11", description: "Roses, fresh" },
-            { code: "0702.00", description: "Tomatoes, fresh or chilled" },
-            { code: "0804.10", description: "Dates, fresh or dried" },
-            { code: "0902.10", description: "Green tea (not fermented) in immediate packings of a net content not exceeding 3 kg" },
-            { code: "1001.91", description: "Wheat and meslin, durum" },
-            { code: "1101.00", description: "Wheat or meslin flour" },
-            { code: "1201.90", description: "Soya beans, whether or not broken, other than for sowing" },
-            { code: "1302.11", description: "Vegetable saps and extracts, liquorice extract" },
-            { code: "1401.10", description: "Bamboos" },
-            { code: "1507.90", description: "Soya-bean oil and its fractions, whether or not refined, but not chemically modified, other" },
-            { code: "1602.31", description: "Prepared or preserved meat, of swine, hams and cuts thereof, boneless" },
-            { code: "1701.99", description: "Cane or beet sugar and chemically pure sucrose, in solid form, other" },
-            { code: "1806.31", description: "Other chocolate and other food preparations containing cocoa, in blocks, slabs or bars weighing more than 2 kg" },
-            { code: "1901.10", description: "Preparations for infant food, put up for retail sale" },
-            { code: "2005.51", description: "Peas (Pisum sativum), shelled" },
-            { code: "2103.20", description: "Tomato ketchup and other tomato sauces" },
-            { code: "2202.10", description: "Waters, including mineral waters and aerated waters, containing added sugar or other sweetening matter or flavoured" },
-            { code: "2309.90", description: "Preparations of a kind used in animal feeding, other" },
-            { code: "2402.20", description: "Cigarettes containing tobacco" },
-            { code: "2503.00", description: "Sulphur of all kinds, other than sublimed sulphur, precipitated sulphur and colloidal sulphur" },
-            { code: "2601.11", description: "Iron ores and concentrates, non-agglomerated" },
-            { code: "2710.19", description: "Petroleum oils and oils obtained from bituminous minerals, other than crude; preparations n.e.s., containing by weight 70 % or more of petroleum oils or of oils obtained from bituminous minerals, these oils being the basic constituents of the preparations" },
-            { code: "2811.11", description: "Hydrogen fluoride" },
-            { code: "2903.12", description: "Dichloromethane (methylene chloride)" },
-            { code: "3004.90", description: "Medicaments (excluding goods of heading 3002, 3005 or 3006) consisting of mixed or unmixed products for therapeutic or prophylactic uses, put up in measured doses (including those in the form of transdermal administration systems) or in forms or packings for retail sale, other" },
-            { code: "3102.10", description: "Urea, whether or not in aqueous solution" },
-            { code: "3204.15", description: "Vat dyes and preparations based thereon" },
-            { code: "3304.99", description: "Beauty or make-up preparations and preparations for the care of the skin (other than medicaments), including sunscreen or sun tan preparations; manicure or pedicure preparations, other" },
-            { code: "3401.11", description: "Toilet soap in bars, cakes, moulded pieces or shapes" },
-            { code: "3506.10", description: "Adhesives based on polymers of headings 3901 to 3913 or on rubber" },
-            { code: "3606.90", description: "Ferro-cerium and other pyrophoric alloys in all forms; articles of combustible materials as specified in note 2 to this chapter, other" },
-            { code: "3707.90", description: "Chemical preparations for photographic uses (other than varnishes, glues, adhesives and similar preparations); unmixed products for photographic uses, put up in measured portions or put up for retail sale in a form ready for use" },
-            { code: "3808.94", description: "Insecticides, put up for retail sale or as preparations or articles (for example, sulphur-treated bands, wicks, candles, fly-papers)" },
-            { code: "3923.21", description: "Sacks and bags (including cones), of polymers of ethylene" },
-            { code: "4011.10", description: "New pneumatic tyres, of rubber, of a kind used on motor cars (including station wagons and racing cars)" },
-            { code: "4107.12", description: "Leather further prepared after tanning or crusting, including parchment-dressed leather, of bovine (including buffalo) or equine animals, without hair on, other, whole hides and skins, of a weight per hide or skin not exceeding 16 kg" },
-            { code: "4203.29", description: "Other articles of apparel and clothing accessories, of leather or of composition leather, other than gloves, mittens and mitts" },
-            { code: "4303.10", description: "Articles of apparel and clothing accessories, of furskin" },
-            { code: "4411.12", description: "Fibreboard of a density exceeding 0.8 g/cm³, not otherwise worked or processed" },
-            { code: "4502.00", description: "Natural cork, debacked or roughly squared" },
-            { code: "4601.21", description: "Mats, matting and screens of vegetable materials; wallcoverings of vegetable materials" },
-            { code: "4703.21", description: "Chemical wood pulp, soda or sulphate, other than dissolving grades, of coniferous wood" },
-            { code: "4802.56", description: "Other paper and paperboard, of a weight exceeding 150 g/m², of which not more than 50 % by weight of total fibre content consists of wood fibres obtained by a mechanical or chemi-mechanical process, uncoated" },
-            { code: "4901.99", description: "Printed books, brochures, leaflets and similar printed matter, other" },
-            { code: "5007.20", description: "Woven fabrics
+            { code: "4202.12", description: "Suitcases with plastic surface" },
+            // Add more HS codes here for a more comprehensive list
+        ];
+
+        const searchInput = document.getElementById('hs-code-search');
+        const resultsList = document.getElementById('hs-code-results');
+        const selectedHSCodeDiv = document.getElementById('selected-hs-code');
+
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const filteredCodes = hsCodeData.filter(item =>
+                item.code.toLowerCase().includes(searchTerm) ||
+                item.description.toLowerCase().includes(searchTerm)
+            );
+            displayResults(filteredCodes);
+        });
+
+        function displayResults(results) {
+            resultsList.innerHTML = '';
+            if (results.length === 0) {
+                const li = document.createElement('li');
+                li.textContent = 'No matching HS codes found.';
+                resultsList.appendChild(li);
+            } else {
+                results.forEach(item => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<span class="hs-code">${item.code}</span><span>${item.description}</span>`;
+                    li.addEventListener('click', function() {
+                        selectedHSCodeDiv.textContent = `Selected HS Code: ${item.code} - ${item.description}`;
+                    });
+                    resultsList.appendChild(li);
+                });
+            }
+        }
+
+        // Initial display (optional - can start with an empty list)
+        displayResults([]);
+
+        window.addEventListener('message', function(event) {
+            if (event.data.type === 'setIframeHeight') {
+                const iframe = document.querySelector('.calculator-iframe');
+                if (iframe) {
+                    iframe.style.height = event.data.height + 'px';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
