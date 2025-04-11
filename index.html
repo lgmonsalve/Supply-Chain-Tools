@@ -1,149 +1,309 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Supply Chain Tools</title>
-  <style>
-    :root {
-      --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      --text-color: #1d1d1f;
-      --muted-color: #6e6e73;
-      --link-color: #0071e3;
-      --background: #ffffff;
-      --max-width: 960px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supply Chain Tools</title>
+    <style>
+        /* Inspired by apple.com */
 
-    * {
-      box-sizing: border-box;
-    }
+        /* Base Styles */
+        :root {
+            --primary-text: #1d1d1f; /* Near black */
+            --secondary-text: #6e6e73; /* Gray */
+            --link-color: #0071e3; /* Apple blue */
+            --background: #f5f5f7; /* Light gray background */
+            --white: #fff;
+            --border-color: #d2d2d7; /* Light gray border */
+            --font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            --font-headline: var(--font-primary);
+            --font-body: var(--font-primary);
+            --shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+            --radius: 0.5rem;
+        }
 
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: var(--font-body);
-      background-color: var(--background);
-      color: var(--text-color);
-      line-height: 1.6;
-    }
+        body {
+            font-family: var(--font-body);
+            background-color: var(--background);
+            color: var(--primary-text);
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
 
-    /* Header Image Banner */
-    .hero {
-      position: relative;
-      width: 100%;
-      height: 280px;
-      background: url("bard.jpeg") center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-align: center;
-    }
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
 
-    .hero-overlay {
-      background-color: rgba(0, 0, 0, 0.4);
-      padding: 2rem 1rem;
-      width: 100%;
-    }
+        a:hover {
+            text-decoration: underline;
+        }
 
-    .hero h1 {
-      margin: 0;
-      font-size: 2.2rem;
-      font-weight: 600;
-    }
+        /* Header */
+        header {
+            background-color: var(--white);
+            color: var(--primary-text);
+            text-align: center;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
 
-    .hero p {
-      margin: 0.5rem 0 0;
-      font-size: 1rem;
-      color: #e0e0e0;
-    }
+        header h1 {
+            font-family: var(--font-headline);
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
 
-    main {
-      max-width: var(--max-width);
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
+        header p {
+            font-size: 1rem;
+            color: var(--secondary-text);
+        }
 
-    section {
-      margin-bottom: 3rem;
-    }
+        /* Main Content */
+        main {
+            max-width: 1600px; /* Increased max-width for three side-by-side elements */
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
 
-    section h2 {
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
-    }
+        main > p {
+            font-size: 1.1rem;
+            color: var(--secondary-text);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
 
-    section p {
-      color: var(--muted-color);
-      max-width: 60ch;
-      margin: 0 0 1.5rem;
-    }
+        /* Tools Container */
+        .tools-container {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
 
-    iframe.calculator {
-      width: 100%;
-      height: 650px;
-      border: 1px solid #ccc;
-      border-radius: 0.5rem;
-    }
+        /* Tool Section */
+        .tool-section {
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            flex: 1;
+            min-width: 0; /* Prevent overflow issues with flexbox */
+        }
 
-    img.incoterms {
-      width: 100%;
-      max-width: 100%;
-      height: auto;
-      border-radius: 0.5rem;
-    }
+        .tool-section h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-text);
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
 
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-      color: var(--muted-color);
-    }
+        .tool-section p {
+            font-size: 1rem;
+            color: var(--secondary-text);
+            margin-bottom: 1rem;
+        }
 
-    @media (max-width: 600px) {
-      .hero h1 {
-        font-size: 1.6rem;
-      }
+        /* Calculator Iframe */
+        .calculator-iframe {
+            width: 100%;
+            height: auto;
+            border: none;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            display: block;
+        }
 
-      section h2 {
-        font-size: 1.2rem;
-      }
-    }
-  </style>
+        /* Incoterms Image */
+        .incoterms-image {
+            width: 100%;
+            max-height: 500px; /* Adjust as needed */
+            object-fit: contain;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        /* HS Code Finder Styles */
+        .hs-code-finder-container label {
+            display: block;
+            font-size: 1rem;
+            color: var(--primary-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .hs-code-finder-container input[type="text"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        .hs-code-list {
+            max-height: 400px; /* Adjust as needed */
+            overflow-y: auto;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+        }
+
+        .hs-code-list ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .hs-code-list li {
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: var(--secondary-text);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .hs-code-list li:last-child {
+            border-bottom: none;
+        }
+
+        .hs-code {
+            font-weight: bold;
+            color: var(--primary-text);
+            margin-right: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            background-color: var(--white);
+            color: var(--secondary-text);
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design for three columns */
+        @media (max-width: 1200px) {
+            .tools-container {
+                flex-direction: column;
+            }
+
+            main {
+                padding: 0 1rem;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            header p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <h1>Supply Chain Tools</h1>
+        <p>Streamline your operations with our intuitive tools.</p>
+    </header>
 
-  <header class="hero">
-    <div class="hero-overlay">
-      <h1>Supply Chain Tools</h1>
-      <p>Tools for freight and global trade.</p>
-    </div>
-  </header>
+    <main>
+        <p>Explore our suite of tools designed to optimize your supply chain management:</p>
 
-  <main>
-    <section>
-      <h2>Freight Density Calculator</h2>
-      <p>Quickly calculate the density and class of your shipment to optimize transportation costs.</p>
-      <iframe 
-        class="calculator" 
-        src="calculator.html" 
-        title="Freight Density Calculator" 
-        loading="lazy">
-      </iframe>
-    </section>
+        <div class="tools-container">
+            <section class="tool-section">
+                <h2>Freight Density Calculator</h2>
+                <p>Accurately calculate freight density and class for efficient shipping.</p>
+                <iframe class="calculator-iframe" src="calculator.html" title="Freight Density Calculator" scrolling="no"></iframe>
+            </section>
 
-    <section>
-      <h2>Incoterms 2020 Chart</h2>
-      <p>Gain clarity on responsibilities in global trade using the updated Incoterms chart.</p>
-      <img 
-        class="incoterms" 
-        src="Incoterms 2020.png" 
-        alt="Incoterms 2020 Chart">
-    </section>
-  </main>
+            <section class="tool-section">
+                <h2>Incoterms 2020 Chart</h2>
+                <p>Understand international trade terms with our comprehensive Incoterms 2020 chart.</p>
+                <img class="incoterms-image" src="Incoterms 2020.png" alt="Incoterms 2020 Chart">
+            </section>
 
-  <footer>
-    <p>&copy; 2025 Supply Chain Tools.</p>
-  </footer>
-</body>
-</html>
+            <section class="tool-section hs-code-finder-container">
+                <h2>HS Code Finder</h2>
+                <label for="hs-code-search">Search HS Codes:</label>
+                <input type="text" id="hs-code-search" placeholder="Enter keyword or HS code">
+                <div class="hs-code-list">
+                    <ul id="hs-code-results">
+                        </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Supply Chain Tools. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const hsCodeData = [
+            { code: "8413.70", description: "Pumps for liquids, whether or not fitted with a measuring device" },
+            { code: "6203.42", description: "Men's or boys' trousers, breeches and shorts, of cotton" },
+            { code: "3926.20", description: "Articles of apparel and clothing accessories, of plastics" },
+            { code: "4819.10", description: "Cartons, boxes and cases, of corrugated paper or paperboard" },
+            { code: "8517.62", description: "Machines for the reception, conversion and transmission or regeneration of voice, images or other data, including switching and routing apparatus" },
+            { code: "9506.62", description: "Balls (other than golf balls and table-tennis balls)" },
+            { code: "7326.90", description: "Other articles of iron or steel, n.e.s." },
+            { code: "2915.24", description: "Dodecanoic acid, its salts and esters" },
+            { code: "9004.10", description: "Sunglasses" },
+            { code: "4202.12", description: "Trunks, suitcases, vanity-cases, executive-cases, briefcases, school satchels and similar containers, with outer surface of plastics or of textile materials" },
+            // Add more HS codes and descriptions here (up to ~500-1000 as discussed)
+            { code: "0102.21", description: "Live bovine animals, pure-bred breeding animals" },
+            { code: "0201.30", description: "Meat of bovine animals, fresh or chilled, boneless" },
+            { code: "0302.11", description: "Salmon, Pacific, Atlantic and Danube, fresh or chilled, excluding fillets and other fish meat of heading 0304" },
+            { code: "0402.10", description: "Milk and cream in powder, granules or other solid forms, of a fat content, by weight, not exceeding 1.5 %" },
+            { code: "0505.10", description: "Feathers of a kind used for stuffing; down" },
+            { code: "0603.11", description: "Roses, fresh" },
+            { code: "0702.00", description: "Tomatoes, fresh or chilled" },
+            { code: "0804.10", description: "Dates, fresh or dried" },
+            { code: "0902.10", description: "Green tea (not fermented) in immediate packings of a net content not exceeding 3 kg" },
+            { code: "1001.91", description: "Wheat and meslin, durum" },
+            { code: "1101.00", description: "Wheat or meslin flour" },
+            { code: "1201.90", description: "Soya beans, whether or not broken, other than for sowing" },
+            { code: "1302.11", description: "Vegetable saps and extracts, liquorice extract" },
+            { code: "1401.10", description: "Bamboos" },
+            { code: "1507.90", description: "Soya-bean oil and its fractions, whether or not refined, but not chemically modified, other" },
+            { code: "1602.31", description: "Prepared or preserved meat, of swine, hams and cuts thereof, boneless" },
+            { code: "1701.99", description: "Cane or beet sugar and chemically pure sucrose, in solid form, other" },
+            { code: "1806.31", description: "Other chocolate and other food preparations containing cocoa, in blocks, slabs or bars weighing more than 2 kg" },
+            { code: "1901.10", description: "Preparations for infant food, put up for retail sale" },
+            { code: "2005.51", description: "Peas (Pisum sativum), shelled" },
+            { code: "2103.20", description: "Tomato ketchup and other tomato sauces" },
+            { code: "2202.10", description: "Waters, including mineral waters and aerated waters, containing added sugar or other sweetening matter or flavoured" },
+            { code: "2309.90", description: "Preparations of a kind used in animal feeding, other" },
+            { code: "2402.20", description: "Cigarettes containing tobacco" },
+            { code: "2503.00", description: "Sulphur of all kinds, other than sublimed sulphur, precipitated sulphur and colloidal sulphur" },
+            { code: "2601.11", description: "Iron ores and concentrates, non-agglomerated" },
+            { code: "2710.19", description: "Petroleum oils and oils obtained from bituminous minerals, other than crude; preparations n.e.s., containing by weight 70 % or more of petroleum oils or of oils obtained from bituminous minerals, these oils being the basic constituents of the preparations" },
+            { code: "2811.11", description: "Hydrogen fluoride" },
+            { code: "2903.12", description: "Dichloromethane (methylene chloride)" },
+            { code: "3004.90", description: "Medicaments (excluding goods of heading 3002, 3005 or 3006) consisting of mixed or unmixed products for therapeutic or prophylactic uses, put up in measured doses (including those in the form of transdermal administration systems) or in forms or packings for retail sale, other" },
+            { code: "3102.10", description: "Urea, whether or not in aqueous solution" },
+            { code: "3204.15", description: "Vat dyes and preparations based thereon" },
+            { code: "3304.99", description: "Beauty or make-up preparations and preparations for the care of the skin (other than medicaments), including sunscreen or sun tan preparations; manicure or pedicure preparations, other" },
+            { code: "3401.11", description: "Toilet soap in bars, cakes, moulded pieces or shapes" },
+            { code: "3506.10", description: "Adhesives based on polymers of headings 3901 to 3913 or on rubber" },
+            { code: "3606.90", description: "Ferro-cerium and other pyrophoric alloys in all forms; articles of combustible materials as specified in note 2 to this chapter, other" },
+            { code: "3707.90", description: "Chemical preparations for photographic uses (other than varnishes, glues, adhesives and similar preparations); unmixed products for photographic uses, put up in measured portions or put up for retail sale in a form ready for use" },
+            { code: "3808.94", description: "Insecticides, put up for retail sale or as preparations or articles (for example, sulphur-treated bands, wicks, candles, fly-papers)" },
+            { code: "3923.21", description: "Sacks and bags (including cones), of polymers of ethylene" },
+            { code: "4011.10", description: "New pneumatic tyres, of rubber, of a kind used on motor cars (including station wagons and racing cars)" },
+            { code: "4107.12", description: "Leather further prepared after tanning or crusting, including parchment-dressed leather, of bovine (including buffalo) or equine animals, without hair on, other, whole hides and skins, of a weight per hide or skin not exceeding 16 kg" },
+            { code: "4203.29", description: "Other articles of apparel and clothing accessories, of leather or of composition leather, other than gloves, mittens and mitts" },
+            { code: "4303.10", description: "Articles of apparel and clothing accessories, of furskin" },
+            { code: "4411.12", description: "Fibreboard of a density exceeding 0.8 g/cm³, not
