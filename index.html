@@ -1,205 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Supply Chain Tools</title>
-    <style>
-        /* Your existing styles (abbreviated for brevity) */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f5f5f7;
-            color: #1d1d1f;
-            margin: 0;
-            padding: 0;
-        }
-        a { color: #0071e3; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        header {
-            position: relative;
-            background-image: url('bard.jpeg');
-            background-size: cover;
-            background-position: center;
-            height: 300px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.7);
-        }
-        header::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 0;
-        }
-        header h1 {
-            font-size: 2.2rem;
-            z-index: 1;
-        }
-        main {
-            max-width: 1600px;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
-        }
-        .tools-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-        .tool-section {
-            background-color: white;
-            border: 1px solid #d2d2d7;
-            border-radius: 0.5rem;
-            box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
-            padding: 1.5rem;
-            flex: 1 1 300px;
-        }
-        .calculator-iframe, .incoterms-image {
-            width: 100%;
-            height: 550px;
-            border: 1px solid #d2d2d7;
-            border-radius: 0.5rem;
-        }
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background-color: white;
-            color: #6e6e73;
-            border-top: 1px solid #d2d2d7;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Supply Chain Tools</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-
-<header>
-    <h1>Supply Chain Tools</h1>
-</header>
-
-<main>
-    <p>Explore our suite of tools designed to optimize your supply chain management:</p>
-    <div class="tools-container">
-
-        <section class="tool-section">
-            <h2>Freight Density Calculator</h2>
-            <p>Accurately calculate freight density and class for efficient shipping.</p>
-            <iframe class="calculator-iframe" src="calculator.html" title="Freight Density Calculator" scrolling="no"></iframe>
-        </section>
-
-        <section class="tool-section">
-            <h2>Incoterms 2020 Chart</h2>
-            <p>Understand international trade terms with our comprehensive Incoterms 2020 chart.</p>
-            <img class="incoterms-image" src="Incoterms 2020.png" alt="Incoterms 2020 Chart" />
-        </section>
-
-        <section class="tool-section">
-            <h2>HS Code Finder (Text Search)</h2>
-            <label for="hs-code-search">Search HS Codes:</label>
-            <input type="text" id="hs-code-search" placeholder="Enter keyword or HS code" style="width:100%;padding:0.75rem;margin-bottom:1rem;">
-            <div class="hs-code-list" style="max-height:200px;overflow-y:auto;border:1px solid #d2d2d7;border-radius:0.5rem;">
-                <ul id="hs-code-results" style="list-style:none;margin:0;padding:0;"></ul>
-            </div>
-            <div id="selected-hs-code" style="margin-top:1rem;font-weight:bold;"></div>
-        </section>
-
-        <section class="tool-section">
-            <h2>Chemical HS Code Finder (Image-Based)</h2>
-            <p>Upload a chemical structure image to automatically find the correct HS code.</p>
-            <input type="file" id="image-upload" accept="image/*" />
-            <button onclick="submitImage()">Submit</button>
-            <div id="image-result" style="margin-top: 1rem; font-weight: bold;"></div>
-        </section>
-
+<body class="bg-gray-100 text-gray-900">
+  <header class="bg-blue-800 text-white p-6 shadow">
+    <div class="max-w-7xl mx-auto">
+      <h1 class="text-3xl font-bold">Supply Chain Tools by Luis Monsalve</h1>
+      <p class="text-sm mt-1">A growing toolkit for supply chain professionals</p>
     </div>
-</main>
+  </header>
 
-<footer>
-    <p>&copy; 2025 Supply Chain Tools. All rights reserved.</p>
-</footer>
+  <main class="max-w-7xl mx-auto p-6 space-y-10">
 
-<script>
-    const hsCodeData = [
-        { code: "8413.70", description: "Pumps for liquids" },
-        { code: "6203.42", description: "Trousers, of cotton" },
-        { code: "3926.20", description: "Apparel of plastics" },
-        { code: "4819.10", description: "Cartons, of paperboard" },
-        { code: "8517.62", description: "Reception apparatus for voice" },
-        { code: "9506.62", description: "Balls (not golf or table-tennis)" },
-        { code: "7326.90", description: "Articles of iron or steel, n.e.s." },
-        { code: "2915.24", description: "Dodecanoic acid salts" },
-        { code: "9004.10", description: "Sunglasses" },
-        { code: "4202.12", description: "Suitcases with plastic surface" }
-    ];
+    <!-- NMFC Density Calculator -->
+    <section class="bg-white p-6 rounded-lg shadow">
+      <h2 class="text-2xl font-semibold mb-4">NMFC Density Calculator & Freight Class Estimator</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <input type="number" id="length" placeholder="Length (in)" class="p-2 border rounded" />
+        <input type="number" id="width" placeholder="Width (in)" class="p-2 border rounded" />
+        <input type="number" id="height" placeholder="Height (in)" class="p-2 border rounded" />
+        <input type="number" id="weight" placeholder="Weight (lbs)" class="p-2 border rounded" />
+        <input type="text" id="commodity" placeholder="Commodity Type (e.g., Plastic, Metal)" class="p-2 border rounded" />
+      </div>
+      <button onclick="calculateDensity()" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded">Calculate</button>
+      <p id="densityResult" class="mt-4 font-medium"></p>
+      <p id="freightClassResult" class="mt-2 text-sm"></p>
+    </section>
 
-    const searchInput = document.getElementById('hs-code-search');
-    const resultsList = document.getElementById('hs-code-results');
-    const selectedHSCodeDiv = document.getElementById('selected-hs-code');
+    <!-- Pallet Configuration Calculator -->
+    <section class="bg-white p-6 rounded-lg shadow">
+      <h2 class="text-2xl font-semibold mb-4">Pallet Configuration Calculator</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <input type="number" id="boxLength" placeholder="Box Length (in)" class="p-2 border rounded" />
+        <input type="number" id="boxWidth" placeholder="Box Width (in)" class="p-2 border rounded" />
+        <input type="number" id="palletLength" placeholder="Pallet Length (in)" class="p-2 border rounded" />
+        <input type="number" id="palletWidth" placeholder="Pallet Width (in)" class="p-2 border rounded" />
+      </div>
+      <button onclick="calculatePalletConfig()" class="mt-4 px-4 py-2 bg-green-600 text-white rounded">Calculate</button>
+      <p id="palletConfigResult" class="mt-4 font-medium"></p>
+    </section>
 
-    searchInput.addEventListener('input', function() {
-        const searchTerm = this.value.toLowerCase();
-        const filteredCodes = hsCodeData.filter(item =>
-            item.code.toLowerCase().includes(searchTerm) ||
-            item.description.toLowerCase().includes(searchTerm)
-        );
-        displayResults(filteredCodes);
-    });
+    <!-- EOQ Calculator -->
+    <section class="bg-white p-6 rounded-lg shadow">
+      <h2 class="text-2xl font-semibold mb-4">Economic Order Quantity (EOQ) Calculator</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <input type="number" id="annualDemand" placeholder="Annual Demand (units)" class="p-2 border rounded" />
+        <input type="number" id="orderCost" placeholder="Order Cost ($)" class="p-2 border rounded" />
+        <input type="number" id="holdingCost" placeholder="Holding Cost per Unit ($)" class="p-2 border rounded" />
+      </div>
+      <button onclick="calculateEOQ()" class="mt-4 px-4 py-2 bg-purple-600 text-white rounded">Calculate</button>
+      <p id="eoqResult" class="mt-4 font-medium"></p>
+    </section>
 
-    function displayResults(results) {
-        resultsList.innerHTML = '';
-        if (results.length === 0) {
-            const li = document.createElement('li');
-            li.textContent = 'No matching HS codes found.';
-            resultsList.appendChild(li);
-        } else {
-            results.forEach(item => {
-                const li = document.createElement('li');
-                li.innerHTML = `<span style="font-weight:bold;">${item.code}</span> <span>${item.description}</span>`;
-                li.style.cursor = "pointer";
-                li.style.padding = "0.5rem";
-                li.addEventListener('click', function () {
-                    selectedHSCodeDiv.textContent = `Selected HS Code: ${item.code} - ${item.description}`;
-                });
-                resultsList.appendChild(li);
-            });
-        }
+    <!-- Site Description Section -->
+    <section class="bg-white p-6 rounded-lg shadow">
+      <h2 class="text-2xl font-semibold mb-4">About This Site</h2>
+      <p class="text-base leading-relaxed">
+        This website was built by Luis G. Monsalve, a Distribution Center Manager and data analytics enthusiast who thrives at the intersection of logistics and continuous improvement. The tools offered here are designed to simplify complex supply chain tasks, support decision-making, and promote operational efficiency. This toolkit is a work in progress and will continue to grow to meet the needs of professionals across the supply chain landscape.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="bg-gray-200 text-center p-4 text-sm mt-10">
+    &copy; 2025 Luis G. Monsalve. All rights reserved. | <a href="mailto:luisgmonsalve@gmail.com" class="text-blue-600 hover:underline">Contact Me</a>
+  </footer>
+
+  <script>
+    function calculateDensity() {
+      const l = parseFloat(document.getElementById("length").value);
+      const w = parseFloat(document.getElementById("width").value);
+      const h = parseFloat(document.getElementById("height").value);
+      const weight = parseFloat(document.getElementById("weight").value);
+      const commodity = document.getElementById("commodity").value.trim().toLowerCase();
+
+      if (!l || !w || !h || !weight) {
+        document.getElementById("densityResult").innerText = "Please enter all values.";
+        return;
+      }
+
+      const cubicInches = l * w * h;
+      const cubicFeet = cubicInches / 1728;
+      const density = weight / cubicFeet;
+      document.getElementById("densityResult").innerText = `Density: ${density.toFixed(2)} lbs/ft³`;
+
+      let freightClass = "Unknown";
+      if (density >= 50) freightClass = "50 (Very Dense, e.g., Machinery)";
+      else if (density >= 35) freightClass = "55–70 (e.g., Metal Parts)";
+      else if (density >= 15) freightClass = "85–125 (e.g., Plastics, Furniture)";
+      else if (density >= 4) freightClass = "150–200 (e.g., Electronics, Light Equipment)";
+      else freightClass = "250–400 (Very Light, e.g., Foam, Clothing)";
+
+      if (commodity.includes("metal")) freightClass += " — likely lower due to density";
+      else if (commodity.includes("plastic")) freightClass += " — average for durable goods";
+      else if (commodity.includes("paper")) freightClass += " — moderate class likely";
+      else if (commodity.includes("clothing")) freightClass += " — higher class due to low density";
+
+      document.getElementById("freightClassResult").innerText = `Estimated Freight Class: ${freightClass}`;
     }
 
-    async function submitImage() {
-        const input = document.getElementById('image-upload');
-        const resultDiv = document.getElementById('image-result');
-        resultDiv.textContent = "Processing...";
+    function calculatePalletConfig() {
+      const boxL = parseFloat(document.getElementById("boxLength").value);
+      const boxW = parseFloat(document.getElementById("boxWidth").value);
+      const palletL = parseFloat(document.getElementById("palletLength").value);
+      const palletW = parseFloat(document.getElementById("palletWidth").value);
 
-        if (!input.files[0]) {
-            resultDiv.textContent = "Please select an image.";
-            return;
-        }
+      if (!boxL || !boxW || !palletL || !palletW) {
+        document.getElementById("palletConfigResult").innerText = "Please enter all values.";
+        return;
+      }
 
-        const formData = new FormData();
-        formData.append("image", input.files[0]);
+      const fitLength = Math.floor(palletL / boxL);
+      const fitWidth = Math.floor(palletW / boxW);
+      const totalBoxes = fitLength * fitWidth;
 
-        try {
-            const response = await fetch("https://your-subdomain.up.railway.app/predict-hs", {
-                method: "POST",
-                body: formData
-            });
-
-            const data = await response.json();
-
-            if (data.hs_code) {
-                resultDiv.textContent = `HS Code: ${data.hs_code} — ${data.description}`;
-            } else {
-                resultDiv.textContent = "No HS code found.";
-            }
-        } catch (error) {
-            console.error("Error:", error);
-            resultDiv.textContent = "An error occurred while processing the image.";
-        }
+      document.getElementById("palletConfigResult").innerText = `You can fit ${totalBoxes} boxes per layer on this pallet.`;
     }
 
-    displayResults([]);
-</script>
+    function calculateEOQ() {
+      const D = parseFloat(document.getElementById("annualDemand").value);
+      const S = parseFloat(document.getElementById("orderCost").value);
+      const H = parseFloat(document.getElementById("holdingCost").value);
 
+      if (!D || !S || !H) {
+        document.getElementById("eoqResult").innerText = "Please enter all values.";
+        return;
+      }
+
+      const eoq = Math.sqrt((2 * D * S) / H);
+      document.getElementById("eoqResult").innerText = `Optimal Order Quantity (EOQ): ${Math.round(eoq)} units`;
+    }
+  </script>
 </body>
 </html>
