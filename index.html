@@ -9,7 +9,7 @@
 <body class="bg-gray-100 text-gray-900">
   <header class="bg-blue-800 text-white p-6 shadow">
     <div class="max-w-7xl mx-auto">
-      <h1 class="text-3xl font-bold">Supply Chain Tools</h1>
+      <h1 class="text-3xl font-bold">Supply Chain Tools by Luis Monsalve</h1>
       <p class="text-sm mt-1">A growing toolkit for supply chain professionals</p>
     </div>
   </header>
@@ -24,7 +24,6 @@
         <input type="number" id="width" placeholder="Width (in)" class="p-2 border rounded" />
         <input type="number" id="height" placeholder="Height (in)" class="p-2 border rounded" />
         <input type="number" id="weight" placeholder="Weight (lbs)" class="p-2 border rounded" />
-        <input type="text" id="commodity" placeholder="Commodity Type (e.g., Plastic, Metal)" class="p-2 border rounded" />
       </div>
       <button onclick="calculateDensity()" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded">Calculate</button>
       <p id="densityResult" class="mt-4 font-medium"></p>
@@ -67,7 +66,7 @@
   </main>
 
   <footer class="bg-gray-200 text-center p-4 text-sm mt-10">
-    &copy; 2025 Luis G. Monsalve. All rights reserved. | <a href="mailto:luisgmonsalve@gmail.com" class="text-blue-600 hover:underline">Contact Me</a>
+    &copy; 2025 Luis G. Monsalve. All rights reserved.
   </footer>
 
   <script>
@@ -76,7 +75,6 @@
       const w = parseFloat(document.getElementById("width").value);
       const h = parseFloat(document.getElementById("height").value);
       const weight = parseFloat(document.getElementById("weight").value);
-      const commodity = document.getElementById("commodity").value.trim().toLowerCase();
 
       if (!l || !w || !h || !weight) {
         document.getElementById("densityResult").innerText = "Please enter all values.";
@@ -89,16 +87,11 @@
       document.getElementById("densityResult").innerText = `Density: ${density.toFixed(2)} lbs/ft³`;
 
       let freightClass = "Unknown";
-      if (density >= 50) freightClass = "50 (Very Dense, e.g., Machinery)";
-      else if (density >= 35) freightClass = "55–70 (e.g., Metal Parts)";
-      else if (density >= 15) freightClass = "85–125 (e.g., Plastics, Furniture)";
-      else if (density >= 4) freightClass = "150–200 (e.g., Electronics, Light Equipment)";
-      else freightClass = "250–400 (Very Light, e.g., Foam, Clothing)";
-
-      if (commodity.includes("metal")) freightClass += " — likely lower due to density";
-      else if (commodity.includes("plastic")) freightClass += " — average for durable goods";
-      else if (commodity.includes("paper")) freightClass += " — moderate class likely";
-      else if (commodity.includes("clothing")) freightClass += " — higher class due to low density";
+      if (density >= 50) freightClass = "Class 50 (Very Dense)";
+      else if (density >= 35) freightClass = "Class 55–70";
+      else if (density >= 15) freightClass = "Class 85–125";
+      else if (density >= 4) freightClass = "Class 150–200";
+      else freightClass = "Class 250–400 (Very Light)";
 
       document.getElementById("freightClassResult").innerText = `Estimated Freight Class: ${freightClass}`;
     }
